@@ -70,11 +70,6 @@ public class ELFCHMainActivity extends AppCompatActivity  {
                     "and contrasenia='"+ editTextPassword.getText()+"'");
                     if(rs.next()){
                 if (rs.getString(1 )!="") {
-
-                        //String cedula = editTextEmail.getText().toString();
-
-                            editTextEmail.setText("");
-                            editTextPassword.setText("");
                             ELFCHenviarcedula();
                             //Intent intent = new Intent(this, Menu.class);
                             //intent.putExtra("cedula",cedula);
@@ -91,24 +86,22 @@ public class ELFCHMainActivity extends AppCompatActivity  {
     public void ELFCHenviarcedula(){
         try {
             Statement st = conexionDB().createStatement();
-            ResultSet rs=st.executeQuery("select cedula_cli from Clientes where correo='"+ editTextEmail.getText() +"'");
-            Toast.makeText(this,rs.toString(),Toast.LENGTH_LONG).show();
+            ResultSet rs= st.executeQuery("select cedula_cli from Clientes\n" +
+                    "where correo='"+ editTextEmail.getText()+"'");
+            if(rs.next()) {
 
-            if(rs.next()){
-                if (rs.getString(1 )!="") {
-                    String cedula=rs.toString();
+                    String cedula=rs.getString(1);
 
                     Intent intent = new Intent(this, Menu.class);
                     intent.putExtra("cedula",cedula);
+                    editTextEmail.setText("");
+                    editTextPassword.setText("");
                     startActivity(intent);
-                }
-            }else if (rs.getString(1 )=="") {
-                Toast.makeText(this,"Error Datos no encontrados",Toast.LENGTH_LONG).show();
+
             }
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),"e",Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
