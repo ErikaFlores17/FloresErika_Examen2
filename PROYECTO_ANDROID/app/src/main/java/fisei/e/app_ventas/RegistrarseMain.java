@@ -67,8 +67,16 @@ public class RegistrarseMain extends AppCompatActivity {
         String correo= editTextCorreo.getText().toString();
         if (!cedula.equals("") && !nombre.equals("") && !apellido.equals("") && !direccion.equals("") && !clave.equals("") && !correo.equals("")) {
             ELFCHverificarCedula(cedula);
+
             if(cedulaCorrecta == true){
-                InsertarCliente();
+                if(clave.length()>=6 && clave.length()<=10) {
+                    ELFCHverificarClave(clave);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "La longitud de la clave debe estar entre 6 y 10 caracteres maximo", Toast.LENGTH_SHORT).show();
+                }
+
             }
             else
             {
@@ -76,7 +84,7 @@ public class RegistrarseMain extends AppCompatActivity {
             }
 
         } else {
-            Toast.makeText(getApplicationContext(), "Error ingrese todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Error Ingrese todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
     //VALIDAR CEDULA
@@ -127,6 +135,35 @@ public class RegistrarseMain extends AppCompatActivity {
         }
         return cedulaCorrecta;
     }
+    //VALIDAR CLAVE UNA MAYUSCULA UNA MINUSCULA UN NUMERO Y UN CARACTER
+    public void ELFCHverificarClave(String claveV) {
+        //1 mayuscula, 1 minuscula, 1 numero minimo
+        //String password = "Cristian199";
+        char clave;
+        byte  contNumero = 0, contLetraMay = 0, contLetraMin=0;
+
+        for (byte i = 0; i < claveV.length(); i++) {
+            clave = claveV.charAt(i);
+            String passValue = String.valueOf(clave);
+            if (passValue.matches("[A-Z]")) {
+                contLetraMay++;
+            } else if (passValue.matches("[a-z]")) {
+                contLetraMin++;
+            } else if (passValue.matches("[0-9]")) {
+                contNumero++;
+            }
+        }
+
+        if(contLetraMay==0 || contLetraMin==0 || contNumero==0){
+            Toast.makeText(getApplicationContext(), "Contraseña debil debe contener 1 numero,1 caracter,1May, 1Min minimo", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            InsertarCliente();
+
+        }
+    }
+
+
     //
 
     int x=0;
