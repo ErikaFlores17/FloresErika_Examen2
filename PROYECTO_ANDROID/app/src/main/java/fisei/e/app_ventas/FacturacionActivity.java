@@ -43,6 +43,7 @@ public class FacturacionActivity extends AppCompatActivity {
     public void FinalizarFact(View view){
 
         Intent intent= new Intent(this, VentaMain.class);
+
         intent.putExtra("numerof",numerof);
         startActivity(intent);
 

@@ -2,6 +2,7 @@ package fisei.e.app_ventas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -50,8 +51,12 @@ public class VentaMain extends AppCompatActivity {
         textviewDetalles=(TextView) findViewById(R.id.textViewDetalle);
         textViewcedul=(TextView)findViewById(R.id.textViewcedul);
 
+        cedula = getIntent().getExtras().getString("cedula");
+        textViewCedula.setText(cedula);
+
         numerof= getIntent().getExtras().getString("numerof");
         editTBusqueda.setText(numerof);
+
     }
     public Connection conexionDB(){
         Connection conex=null;
@@ -71,10 +76,19 @@ public class VentaMain extends AppCompatActivity {
         try {
             //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
             Statement st = connectionclass().createStatement();
-            ResultSet rs= st.executeQuery("select c.id_cli from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='"+textViewcedul+"'");
+            ResultSet rs= st.executeQuery("select v.id_venta from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='"+textViewcedul.getText()+"'");
             if(rs.next()) {
                 if (rs.getString(1) != "") {
-                    Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
+                    String id=rs.getString(1)
+                    if(id==editTBusqueda.getText()){
+                        //consultarVentas();
+                        consultarVentas();
+                        consultarConceptos();
+                    }
+                else
+                    {
+                        Toast.makeText(getApplicationContext(),"No existe registros",Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             }
@@ -146,8 +160,9 @@ public class VentaMain extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.checkboxIDVenta:
                 if (checked) {
-                    consultarVentas();
-                    consultarConceptos();
+                    consultarUsuario();
+                    //consultarVentas();
+                    //consultarConceptos();
                 }
                 else
                     // Remove the meat
