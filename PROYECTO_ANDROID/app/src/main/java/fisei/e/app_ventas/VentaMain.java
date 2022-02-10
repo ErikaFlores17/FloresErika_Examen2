@@ -54,7 +54,7 @@ public class VentaMain extends AppCompatActivity {
 
         numerof= getIntent().getExtras().getString("numerof");
         editTBusqueda.setText(numerof);
-        numerof= getIntent().getExtras().getString("numced");
+        numced= getIntent().getExtras().getString("numced");
         textViewcedul.setText(numced);
     }
     public Connection conexionDB(){
