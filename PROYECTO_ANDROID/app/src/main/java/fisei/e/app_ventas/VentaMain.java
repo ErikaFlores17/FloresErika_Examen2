@@ -71,7 +71,7 @@ public class VentaMain extends AppCompatActivity {
         try {
             //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
             Statement st = connectionclass().createStatement();
-            ResultSet rs= st.executeQuery("select c.cedula_cli from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='"+textViewcedul+"'");
+            ResultSet rs= st.executeQuery("select c.id_cli from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='"+textViewcedul+"'");
             if(rs.next()) {
                 if (rs.getString(1) != "") {
                     Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
