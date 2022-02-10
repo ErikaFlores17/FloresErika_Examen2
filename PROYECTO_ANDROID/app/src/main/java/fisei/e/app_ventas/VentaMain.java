@@ -157,9 +157,9 @@ public class VentaMain extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.checkboxIDVenta:
                 if (checked) {
-                    consultarUsuario();
-                    //consultarVentas();
-                    //consultarConceptos();
+                    //consultarUsuario();
+                    consultarVentas();
+                   consultarConceptos();
                 }
                 else
                     // Remove the meat
