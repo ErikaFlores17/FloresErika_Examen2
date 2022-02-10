@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4503A9F4"
+    tools:context=".VentaMain">
+
+    <TextView
+        android:id="@+id/textViewDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="194dp"
+        android:hint="@string/Detalles"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Cantidad      Producto     CostoUnitario   Subtotal"
+        android:textColor="#E91E63"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="185dp"
+        android:layout_height="269dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="9dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="51dp"
+            android:layout_height="16dp"
+            android:text="@string/fechaVenta" />
+
+        <TextView
+            android:id="@+id/textViewFechaVenta"
+            android:layout_width="154dp"
+            android:layout_height="58dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subtotalVenta" />
+
+        <TextView
+            android:id="@+id/textViewSubTotalVenta"
+            android:layout_width="156dp"
+            android:layout_height="39dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ivaVenta" />
+
+        <TextView
+            android:id="@+id/textViewIvaVenta"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:text="TOTAL:"
+            android:textColor="#E91E63" />
+
+        <TextView
+            android:id="@+id/textViewTotalVenta"
+            android:layout_width="155dp"
+            android:layout_height="42dp"
+
+            android:textColor="#3F51B5"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="171dp"
+        android:layout_height="258dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="89dp"
+            android:layout_height="16dp"
+            android:text="@string/cedulaClienteVenta" />
+
+        <TextView
+            android:id="@+id/textViewCedulaVenta"
+            android:layout_width="159dp"
+            android:layout_height="40dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreClienteVenta" />
+
+        <TextView
+            android:id="@+id/tvNombreC"
+            android:layout_width="157dp"
+            android:layout_height="41dp"
+
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:text="Direccion" />
+
+        <TextView
+            android:id="@+id/textViewTelefonoVenta"
+            android:layout_width="157dp"
+            android:layout_height="44dp"
+
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="410dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="24dp"
+        android:background="#2196F3"
+        android:text="DETALLE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTBusqueda" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="145dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toEndOf="@+id/editTBusqueda"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <CheckBox
+            android:id="@+id/checkboxIDVenta"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:onClick="checkFactura"
+            android:text="N° Factura"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTBusqueda"
+        android:layout_width="165dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:hint="@string/idCliente"
+        android:inputType="textPersonName"
+        android:textColor="#0B0A0A"
+        android:textColorHint="#020202"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/Widget.MaterialComponents.TextView"
+        android:layout_width="415dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="1dp"
+        android:background="#2196F3"
+        android:text="VENTAS"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

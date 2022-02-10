@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">APP_VENTAS</string>
+    <string name="inicioLogin">LOGIN</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtPassword">Password</string>
+
+    <string name="nombreCliente">NOMBRE:</string>
+
+    <string name="apellidoCliente">APELLIDO:</string>
+    <string name="cedulaCliente">CEDULA:</string>
+    <string name="direccionCliente">DIRECCION:</string>
+    <string name="telefonoCliente">Teléfono:</string>
+    <string name="correoCliente">Correo:</string>
+    <string name="idCliente">Buscar...</string>
+    <string name="checkNombre">Nombre</string>
+    <string name="checkCedula">Cedula</string>
+
+    <string name="checkCodigo">Codigo</string>
+    <string name="checkID">ID</string>
+    <string name="codigoProducto">CODIGO:</string>
+    <string name="buscarProducto">Buscar:</string>
+    <string name="nombreProducto">NOMBRE:</string>
+    <string name="precioUnitario">PRECIO UNITARIO:</string>
+    <string name="costoProducto">COSTO:</string>
+    <string name="ivaProducto">IVA:</string>
+    <string name="stockProducto">STOCK:</string>
+    <string name="IDcategoria">ID CATEGORIA:</string>
+
+    <string name="cedulaClienteVenta">Cedula o RUC</string>
+    <string name="nombreClienteVenta">Nombre Cliente</string>
+    <string name="fechaVenta">Fecha</string>
+    <string name="subtotalVenta">Subtotal</string>
+    <string name="totalVenta">Total</string>
+    <string name="ivaVenta">IVA</string>
+    <string name="Detalles">Detalles</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="cedulaR">Cedula:</string>
+    <string name="nombreR">Nombre:</string>
+    <string name="apellidoR">Apellido:</string>
+    <string name="direccionR">Direccion:</string>
+    <string name="claveR">Contraseña:</string>
+
+
+</resources>
