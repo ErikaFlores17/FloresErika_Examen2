@@ -232,7 +232,9 @@ public class ComprasMain extends AppCompatActivity {
             intent.putStringArrayListExtra("lstProductos",lstProductos);
 
             String nf=textViewNumeroFactura.getText().toString();
+            String numced=textViewCedula.getText().toString();
             intent.putExtra("numerof",nf);
+            intent.putExtra("numced",numced);
             startActivity(intent);
 
         } catch(Exception e){

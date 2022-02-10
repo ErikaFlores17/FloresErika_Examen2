@@ -51,12 +51,8 @@ public class VentaMain extends AppCompatActivity {
         textviewDetalles=(TextView) findViewById(R.id.textViewDetalle);
         textViewcedul=(TextView)findViewById(R.id.textViewcedul);
 
-        cedula = getIntent().getExtras().getString("cedula");
-        textViewCedula.setText(cedula);
-
         numerof= getIntent().getExtras().getString("numerof");
         editTBusqueda.setText(numerof);
-
     }
     public Connection conexionDB(){
         Connection conex=null;
@@ -75,12 +71,12 @@ public class VentaMain extends AppCompatActivity {
     public void consultarUsuario(){
         try {
             //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
-            Statement st = connectionclass().createStatement();
+            Statement st = conexionDB().createStatement();
             ResultSet rs= st.executeQuery("select v.id_venta from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='"+textViewcedul.getText()+"'");
             if(rs.next()) {
                 if (rs.getString(1) != "") {
-                    String id=rs.getString(1)
-                    if(id==editTBusqueda.getText()){
+                    String id=rs.getString(1);
+                    if(id==editTBusqueda.getText().toString()){
                         //consultarVentas();
                         consultarVentas();
                         consultarConceptos();
@@ -95,8 +91,6 @@ public class VentaMain extends AppCompatActivity {
         }catch(SQLException e){
             Toast.makeText(getApplicationContext(),"error existe",Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
     public void consultarVentas(){

@@ -12,12 +12,10 @@ public class Menu extends AppCompatActivity {
 
     String cedula;
     TextView textViewCedula;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
        cedula = getIntent().getExtras().getString("cedula");
        textViewCedula = findViewById(R.id.textViewCedula_);
        textViewCedula.setText(cedula);
@@ -36,8 +34,6 @@ public class Menu extends AppCompatActivity {
         try{
 
             Toast.makeText(getApplicationContext(),"REALIZAR COMPRA",Toast.LENGTH_SHORT).show();
-            String cedula=textViewCedula.getText();
-            intent.putExtra("cedula",cedula);
 
         }catch(Exception e){
 

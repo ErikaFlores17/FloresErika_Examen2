@@ -16,6 +16,7 @@ public class FacturacionActivity extends AppCompatActivity {
     ArrayList<String> lstProductos = new ArrayList<>();
     ListView listviewProducto ;
     String numerof;
+    String numced;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class FacturacionActivity extends AppCompatActivity {
         }
 
         numerof= getIntent().getExtras().getString("numerof");
+        numerof= getIntent().getExtras().getString("numced");
         Toast.makeText(getApplicationContext(),numerof,Toast.LENGTH_SHORT).show();
 
 
@@ -45,6 +47,7 @@ public class FacturacionActivity extends AppCompatActivity {
         Intent intent= new Intent(this, VentaMain.class);
 
         intent.putExtra("numerof",numerof);
+        intent.putExtra("numced",numced);
         startActivity(intent);
 
     }
