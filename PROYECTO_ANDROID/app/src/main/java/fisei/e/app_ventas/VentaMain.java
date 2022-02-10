@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -64,9 +65,28 @@ public class VentaMain extends AppCompatActivity {
         }
         return conex;
     }
+    public void consultarUsuario(){
+        try {
+            //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
+            Statement st = connectionclass().createStatement();
+            ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
+            if(rs.next()) {
+                if (rs.getString(1) != "") {
+                    Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
+                    x=1;
+                }
+            }
+        }catch(SQLException e){
+            Toast.makeText(getApplicationContext(),"error existe",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
     public void consultarVentas(){
         try {
             Statement st = conexionDB().createStatement();
+
             ResultSet rs= st.executeQuery("select c.cedula_cli,c.nombre_cli +' '+c.apellido_cli, c.direccion_cli, v.fecha_ven,v.total,v.subtotal,v.iva \n" +
                     "from Clientes  c\n" +
                     "inner join Venta v on\n" +

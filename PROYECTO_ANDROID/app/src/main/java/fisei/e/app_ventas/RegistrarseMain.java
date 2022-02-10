@@ -212,7 +212,6 @@ public class RegistrarseMain extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Cliente guardado...", Toast.LENGTH_SHORT).show();
                     Intent intent= new Intent(this, ELFCHMainActivity.class);
                     startActivity(intent);
-
             }
         }
         else{
