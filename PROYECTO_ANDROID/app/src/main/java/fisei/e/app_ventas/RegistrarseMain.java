@@ -24,6 +24,8 @@ public class RegistrarseMain extends AppCompatActivity {
     EditText editTextDireccion;
     EditText editTextClave;
     EditText editTextCorreo;
+    int x=0;
+    int y=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,6 @@ public class RegistrarseMain extends AppCompatActivity {
         }
         return conex;
     }
-
-
-
     public void ClickInsertar(View view){
         Connection connection = connectionclass();
         String cedula = editTextCedula.getText().toString();
@@ -67,7 +66,6 @@ public class RegistrarseMain extends AppCompatActivity {
         String correo= editTextCorreo.getText().toString();
         if (!cedula.equals("") && !nombre.equals("") && !apellido.equals("") && !direccion.equals("") && !clave.equals("") && !correo.equals("")) {
             ELFCHverificarCedula(cedula);
-
             if(cedulaCorrecta == true){
                 if(clave.length()>=6 && clave.length()<=10) {
                     ELFCHverificarClave(clave);
@@ -140,7 +138,7 @@ public class RegistrarseMain extends AppCompatActivity {
         //1 mayuscula, 1 minuscula, 1 numero minimo
         //String password = "Cristian199";
         char clave;
-        byte  contNumero = 0, contLetraMay = 0, contLetraMin=0;
+        byte  contNumero = 0, contLetraMay = 0, contLetraMin=0,contCar=0;
 
         for (byte i = 0; i < claveV.length(); i++) {
             clave = claveV.charAt(i);
@@ -151,6 +149,8 @@ public class RegistrarseMain extends AppCompatActivity {
                 contLetraMin++;
             } else if (passValue.matches("[0-9]")) {
                 contNumero++;
+            } else if (passValue.matches(",.*/-+")) {
+            contCar++;
             }
         }
 
@@ -166,7 +166,7 @@ public class RegistrarseMain extends AppCompatActivity {
 
     //
 
-    int x=0;
+
 
     public void ExisteCliente(){
         try {
@@ -177,7 +177,6 @@ public class RegistrarseMain extends AppCompatActivity {
                         if (rs.getString(1) != "") {
                             Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
                             x=1;
-
                         }
                     }
         }catch(SQLException e){
@@ -191,7 +190,7 @@ public class RegistrarseMain extends AppCompatActivity {
             if(rs.next()) {
                 if (rs.getString(1) != "") {
                     Toast.makeText(this, "El correo ya se encuentra registrado...", Toast.LENGTH_LONG).show();
-                    x=1;
+                    y=1;
                 }
             }
         }catch(SQLException e){
@@ -200,18 +199,17 @@ public class RegistrarseMain extends AppCompatActivity {
     }
 
     public void InsertarCliente(){
-
         ExisteCliente();
-        if(x==0) {
+        if(x==0 && y==0) {
             Connection connection = connectionclass();
             try {
                 if (connection != null) {
-                    String sqlinsert = "Insert into Clientes values ('" + editTextCedula.getText().toString() + "','" + editTextNombre.getText().toString() + "','" + editTextApellido.getText().toString() + "','" + editTextDireccion.getText().toString() + "','" + editTextClave.getText().toString() + "')";
+                    String sqlinsert = "Insert into Clientes values ('" + editTextCedula.getText().toString() + "','" + editTextNombre.getText().toString() + "','" + editTextApellido.getText().toString() + "','" + editTextDireccion.getText().toString() + "','" + editTextClave.getText().toString() + "','" + editTextCorreo.getText().toString() + "')";
                     Statement st = connection.createStatement();
                     ResultSet rs = st.executeQuery(sqlinsert);
                 }
             } catch (SQLException e) {
-                Toast.makeText(getApplicationContext(), "Cliente Guardado...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Cliente guardado...", Toast.LENGTH_SHORT).show();
                     Intent intent= new Intent(this, ELFCHMainActivity.class);
                     startActivity(intent);
 
@@ -219,6 +217,7 @@ public class RegistrarseMain extends AppCompatActivity {
         }
         else{
             x=0;
+            y=0;
            // Toast.makeText(getApplicationContext(), "ijiijij", Toast.LENGTH_SHORT).show();
         }
 
