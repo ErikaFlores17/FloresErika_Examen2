@@ -16,6 +16,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
        cedula = getIntent().getExtras().getString("cedula");
        textViewCedula = findViewById(R.id.textViewCedula_);
        textViewCedula.setText(cedula);

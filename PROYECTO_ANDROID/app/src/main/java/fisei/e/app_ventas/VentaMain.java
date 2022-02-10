@@ -29,6 +29,7 @@ public class VentaMain extends AppCompatActivity {
     TextView textViewTotalVenta;
     TextView textViewIvaVenta;
     String numerof;
+    TextView textViewcedul;
 
 
     @Override
@@ -47,6 +48,8 @@ public class VentaMain extends AppCompatActivity {
         textViewTotalVenta=(TextView) findViewById(R.id.textViewTotalVenta);
         textViewIvaVenta=(TextView) findViewById(R.id.textViewIvaVenta);
         textviewDetalles=(TextView) findViewById(R.id.textViewDetalle);
+        textViewcedul=(TextView)findViewById(R.id.textViewcedul);
+
 
         numerof= getIntent().getExtras().getString("numerof");
         editTBusqueda.setText(numerof);
@@ -69,11 +72,13 @@ public class VentaMain extends AppCompatActivity {
         try {
             //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
             Statement st = connectionclass().createStatement();
-            ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
+            ResultSet rs= st.executeQuery("select c.cedula_cli from Clientes c inner join Venta v on c.id_cliente = v.id_cliente where c.cedula_cli='1805299169'");
+
+
             if(rs.next()) {
                 if (rs.getString(1) != "") {
                     Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
-                    x=1;
+
                 }
             }
         }catch(SQLException e){
