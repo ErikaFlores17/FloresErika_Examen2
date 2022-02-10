@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class MainActivity extends AppCompatActivity  {
+public class ELFCHMainActivity extends AppCompatActivity  {
     EditText editTextEmail;
     EditText editTextPassword;
     Button buttonIngresar1;
@@ -65,26 +65,50 @@ public class MainActivity extends AppCompatActivity  {
     public void consultarLogin(){
         try {
             Statement st = conexionDB().createStatement();
-            ResultSet rs= st.executeQuery("select cedula_cli from Clientes\n" +
-                    "where cedula_cli='"+ editTextEmail.getText()+"'\n" +
+            ResultSet rs= st.executeQuery("select correo from Clientes\n" +
+                    "where correo='"+ editTextEmail.getText()+"'\n" +
                     "and contrasenia='"+ editTextPassword.getText()+"'");
-            if(rs.next()){
+                    if(rs.next()){
                 if (rs.getString(1 )!="") {
 
-                        String cedula = editTextEmail.getText().toString();
+                        //String cedula = editTextEmail.getText().toString();
+
                             editTextEmail.setText("");
                             editTextPassword.setText("");
-                            Intent intent = new Intent(this, Menu.class);
-                            intent.putExtra("cedula",cedula);
-                            startActivity(intent);
+                            ELFCHenviarcedula();
+                            //Intent intent = new Intent(this, Menu.class);
+                            //intent.putExtra("cedula",cedula);
+                            //startActivity(intent);
                 }
             }else if (rs.getString(1 )=="") {
                 Toast.makeText(this,"Error Datos no encontrados",Toast.LENGTH_LONG).show();
             }
 
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Usuario o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Correo o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
         }
+    }
+    public void ELFCHenviarcedula(){
+        try {
+            Statement st = conexionDB().createStatement();
+            ResultSet rs=st.executeQuery("select cedula_cli from Clientes where correo='"+ editTextEmail.getText() +"'");
+            Toast.makeText(this,rs.toString(),Toast.LENGTH_LONG).show();
+
+            if(rs.next()){
+                if (rs.getString(1 )!="") {
+                    String cedula=rs.toString();
+
+                    Intent intent = new Intent(this, Menu.class);
+                    intent.putExtra("cedula",cedula);
+                    startActivity(intent);
+                }
+            }else if (rs.getString(1 )=="") {
+                Toast.makeText(this,"Error Datos no encontrados",Toast.LENGTH_LONG).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),"e",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

@@ -100,7 +100,7 @@ public class RegistrarseMain extends AppCompatActivity {
                 }
             } catch (SQLException e) {
                 Toast.makeText(getApplicationContext(), "Cliente Guardado...", Toast.LENGTH_SHORT).show();
-                    Intent intent= new Intent(this, MainActivity.class);
+                    Intent intent= new Intent(this, ELFCHMainActivity.class);
                     startActivity(intent);
 
             }
