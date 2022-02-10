@@ -23,6 +23,7 @@ public class RegistrarseMain extends AppCompatActivity {
     EditText editTextApellido;
     EditText editTextDireccion;
     EditText editTextClave;
+    EditText editTextCorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class RegistrarseMain extends AppCompatActivity {
         editTextApellido=(EditText) findViewById(R.id.editTextApellido);
         editTextDireccion=(EditText) findViewById(R.id.editTextDireccion);
         editTextClave=(EditText) findViewById(R.id.editTextClave);
+        editTextCorreo=(EditText) findViewById(R.id.editTextCorreo);
 
     }
     @SuppressLint("NewApi")
@@ -62,12 +64,70 @@ public class RegistrarseMain extends AppCompatActivity {
         String apellido = editTextApellido.getText().toString();
         String direccion = editTextDireccion.getText().toString();
         String clave = editTextClave.getText().toString();
-        if (!cedula.equals("") && !nombre.equals("") && !apellido.equals("") && !direccion.equals("") && !clave.equals("")) {
-            InsertarCliente();
+        String correo= editTextCorreo.getText().toString();
+        if (!cedula.equals("") && !nombre.equals("") && !apellido.equals("") && !direccion.equals("") && !clave.equals("") && !correo.equals("")) {
+            ELFCHverificarCedula(cedula);
+            if(cedulaCorrecta == true){
+                InsertarCliente();
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Cedula incorrecta", Toast.LENGTH_SHORT).show();
+            }
+
         } else {
             Toast.makeText(getApplicationContext(), "Error ingrese todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
+    //VALIDAR CEDULA
+    boolean cedulaCorrecta = false;
+
+    public boolean ELFCHverificarCedula(String cedula) {
+
+        try {
+
+            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+            {
+                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+                if (tercerDigito < 6) {
+// Coeficientes de validación cédula
+// El decimo digito se lo considera dígito verificador
+                    int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+                    int verificador = Integer.parseInt(cedula.substring(9,10));
+                    int suma = 0;
+                    int digito = 0;
+                    for (int i = 0; i < (cedula.length() - 1); i++) {
+                        digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
+                        suma += ((digito % 10) + (digito / 10));
+                    }
+
+                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+                        cedulaCorrecta = true;
+                    }
+                    else if ((10 - (suma % 10)) == verificador) {
+                        cedulaCorrecta = true;
+                    } else {
+                        cedulaCorrecta = false;
+                    }
+                } else {
+                    cedulaCorrecta = false;
+                }
+            } else {
+                cedulaCorrecta = false;
+            }
+        } catch (NumberFormatException nfe) {
+            cedulaCorrecta = false;
+        } catch (Exception err) {
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+            cedulaCorrecta = false;
+        }
+
+        if (!cedulaCorrecta) {
+            System.out.println("La Cédula ingresada es Incorrecta");
+        }
+        return cedulaCorrecta;
+    }
+    //
 
     int x=0;
 
@@ -80,10 +140,25 @@ public class RegistrarseMain extends AppCompatActivity {
                         if (rs.getString(1) != "") {
                             Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
                             x=1;
+
                         }
                     }
         }catch(SQLException e){
                 Toast.makeText(getApplicationContext(),"error existe",Toast.LENGTH_SHORT).show();
+        }
+        // CONSULTA PARA VERIFICAR QUE EL CORREO NO SE REPITA
+        try {
+            //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
+            Statement st = connectionclass().createStatement();
+            ResultSet rs= st.executeQuery("select correo from Clientes where correo='"+editTextCorreo.getText()+"'");
+            if(rs.next()) {
+                if (rs.getString(1) != "") {
+                    Toast.makeText(this, "El correo ya se encuentra registrado...", Toast.LENGTH_LONG).show();
+                    x=1;
+                }
+            }
+        }catch(SQLException e){
+            Toast.makeText(getApplicationContext(),"error existe",Toast.LENGTH_SHORT).show();
         }
     }
 

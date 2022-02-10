@@ -97,7 +97,7 @@
             android:layout_height="67dp"
             android:background="#F1F4F4"
             android:backgroundTint="#F1F2F3"
-            android:digits="abcdefghijklmnñopqrstuvwxyz.@"
+            android:digits="abcdefghijklmnñopqrstuvwxyz.@1234567890"
             android:drawableStart="@drawable/ic_baseline_person_24"
             android:ems="10"
             android:hint="Correo electronico"

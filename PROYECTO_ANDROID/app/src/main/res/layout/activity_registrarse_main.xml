@@ -102,28 +102,28 @@
         android:id="@+id/editTextCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="76dp"
-        android:digits="abcdefghijklmnñopqrstuvwxyz.@"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="28dp"
+        android:digits="abcdefghijklmnñopqrstuvwxyz.@1234567890"
         android:drawableStart="@drawable/ic_baseline_cottage_24"
         android:ems="10"
         android:hint="Correo electronico"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextApellido" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDireccion" />
 
     <EditText
         android:id="@+id/editTextClave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="28dp"
         android:drawableStart="@drawable/ic_baseline_lock_open_24"
         android:ems="10"
         android:hint="@string/claveR"
         android:inputType="textPersonName"
         android:maxLength="10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDireccion" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCorreo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
