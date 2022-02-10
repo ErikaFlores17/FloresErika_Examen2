@@ -30,6 +30,7 @@ public class VentaMain extends AppCompatActivity {
     TextView textViewTotalVenta;
     TextView textViewIvaVenta;
     String numerof;
+    String numced;
     TextView textViewcedul;
 
 
@@ -53,6 +54,8 @@ public class VentaMain extends AppCompatActivity {
 
         numerof= getIntent().getExtras().getString("numerof");
         editTBusqueda.setText(numerof);
+        numerof= getIntent().getExtras().getString("numced");
+        textViewcedul.setText(numced);
     }
     public Connection conexionDB(){
         Connection conex=null;

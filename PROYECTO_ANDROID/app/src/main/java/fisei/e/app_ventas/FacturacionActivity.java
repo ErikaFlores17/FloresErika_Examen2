@@ -37,7 +37,7 @@ public class FacturacionActivity extends AppCompatActivity {
         }
 
         numerof= getIntent().getExtras().getString("numerof");
-        numerof= getIntent().getExtras().getString("numced");
+        numced= getIntent().getExtras().getString("numced");
         Toast.makeText(getApplicationContext(),numerof,Toast.LENGTH_SHORT).show();
 
 
